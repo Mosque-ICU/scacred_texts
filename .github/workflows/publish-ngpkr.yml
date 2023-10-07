@@ -1,0 +1,39 @@
+name: NPM Package packages/micu-ui
+
+on:
+   push:
+      branches: ['main']
+   pull_request:
+      branches: ['main']
+
+jobs:
+   build:
+      runs-on: ubuntu-latest
+      steps:
+         - uses: actions/checkout@v4
+         - uses: actions/setup-node@v3
+           with:
+              node-version: 20
+         - name: Test
+           run: |
+              npm ci
+              npm test
+
+   publish-gpr:
+      needs: build
+      name:
+         Publish to GitHub Package
+         Registry
+      runs-on: ubuntu-latest
+      steps:
+         - uses: actions/checkout@v4
+         - uses: actions/setup-node@v3
+           with:
+              node-version: 20
+              registry-url: https://npm.pkg.github.com/
+         - name: Publish
+           run: |
+              npm ci
+              npm publish
+           env:
+              NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
