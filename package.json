@@ -1,6 +1,6 @@
 {
 	"name": "sacred_texts",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "npm package for islamic texts",
 	"main": "index.js",
 	"scripts": {

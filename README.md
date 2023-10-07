@@ -1,22 +1,24 @@
-### sacred_texts NPM
+````markdown
+# sacred_texts NPM
 
-The Sacred Texts Package simplifies
+The Sacred Texts NPM package simplifies
 access to Hadiths and Quranic verses for
-developers. This Package builds upon the
+developers. This package builds upon the
 Hadith API repository to provide an
 easy-to-use interface for retrieving
 sacred texts.
 
-#### Installation
+## Installation
 
-You can install the Sacred Texts API
+You can install the Sacred Texts NPM
 package via npm:
 
 ```bash
 npm i sacred_texts
 ```
+````
 
-#### Usage
+## Usage
 
 Import the package in your code:
 
@@ -24,142 +26,132 @@ Import the package in your code:
 const sacredTexts = require('sacred_texts');
 ```
 
-#### Functions
+### Functions
 
-##### `sacredTexts.random(options?)`
+#### `listAvailableEditions(options)`
 
-Retrieve a random sacred text. Optional
-parameters include:
+This function retrieves a list of
+available Hadith editions.
 
--  `type` (string): Specify `'hadith'`
-   or `'quran'`.
--  `book` (string): Name of the book or
-   section.
--  `section` (string): Additional
-   details about the text.
--  `language` (string): Desired
-   language.
+-  `options.language` (optional): Filter
+   editions by language.
+-  `options.limit` (optional): Limit the
+   number of editions returned.
 
-Example:
+Returns: An array of available Hadith
+editions.
 
-```javascript
-const randomText = sacredTexts.random({
-	type: 'hadith',
-	book: 'sahih_bukhari',
-	language: 'english',
-});
-console.log(randomText);
+#### `getMinifiedEditions(options)`
+
+This function retrieves a list of
+minified Hadith editions.
+
+-  `options.language` (optional): Filter
+   editions by language.
+-  `options.limit` (optional): Limit the
+   number of editions returned.
+
+Returns: An array of minified Hadith
+editions.
+
+#### `getHadithByEdition(options)`
+
+This function retrieves Hadiths from a
+specific edition.
+
+-  `options.editionName`: The name of
+   the edition.
+-  `options.language` (optional): Filter
+   Hadiths by language.
+-  `options.limit` (optional): Limit the
+   number of Hadiths returned.
+
+Returns: An array of Hadiths from the
+specified edition.
+
+#### `getSpecificHadith(options)`
+
+This function retrieves a specific
+Hadith from a given edition.
+
+-  `options.editionName`: The name of
+   the edition.
+-  `options.HadithNo`: The number of the
+   specific Hadith.
+-  `options.language` (optional): Filter
+   Hadiths by language.
+-  `options.limit` (optional): Limit the
+   number of Hadiths returned.
+
+Returns: An array containing the
+specific Hadith.
+
+#### `getMinifiedSpecificHadith(options)`
+
+This function retrieves a minified
+version of a specific Hadith from a
+given edition.
+
+-  `options.editionName`: The name of
+   the edition.
+-  `options.HadithNo`: The number of the
+   specific Hadith.
+-  `options.language` (optional): Filter
+   Hadiths by language.
+-  `options.limit` (optional): Limit the
+   number of Hadiths returned.
+
+Returns: An array containing the
+minified version of the specific Hadith.
+
+#### `getSectionByNumber(options)`
+
+This function retrieves a section of
+Hadiths from a specific edition based on
+section number.
+
+-  `options.editionName`: The name of
+   the edition.
+-  `options.sectionNo`: The number of
+   the section.
+-  `options.language` (optional): Filter
+   Hadiths by language.
+-  `options.limit` (optional): Limit the
+   number of Hadiths returned.
+
+Returns: An array of Hadiths from the
+specified section.
+
+#### `getHadithBookDetails(options)`
+
+This function retrieves details about
+the Hadith book.
+
+-  `options.language` (optional): Filter
+   book details by language.
+-  `options.limit` (optional): Limit the
+   number of book details returned.
+
+Returns: An array containing details
+about the Hadith book.
+
+#### `randomHadith(options)`
+
+This function retrieves random Hadiths.
+
+-  `options.language` (optional): Filter
+   random Hadiths by language.
+-  `options.limit` (optional): Limit the
+   number of random Hadiths returned.
+
+Returns: An array of random Hadiths.
+
+## License
+
+This package is released under the
+[LICENSE](LICENSE) license.
+
 ```
 
-##### `sacredTexts.hadith(options?)`
-
-Retrieve a specific Hadith using
-optional parameters similar to `random`.
-
-Example:
-
-```javascript
-const specificHadith =
-	sacredTexts.hadith({
-		book: 'sahih_muslim',
-		section: 'Book 1, Hadith 1',
-		language: 'arabic',
-	});
-console.log(specificHadith);
+You can include additional sections or information as needed, and don't forget to replace `[LICENSE](LICENSE)` with a link to the actual license file if you have one.
 ```
-
-##### `sacredTexts.quran(options?)`
-
-Retrieve a specific Quranic verse using
-optional parameters similar to `random`.
-
-Example:
-
-```javascript
-const specificVerse = sacredTexts.quran(
-	{
-		section: 'surah 2, verse 255',
-		language: 'english',
-	}
-);
-console.log(specificVerse);
-```
-
-##### `sacredTexts.availableLanguages()`
-
-Get a list of available languages for
-sacred texts.
-
-Example:
-
-```javascript
-const languages =
-	sacredTexts.availableLanguages();
-console.log(
-	'Available Languages:',
-	languages
-);
-```
-
-##### `sacredTexts.availableBooks(type)`
-
-Get a list of available books or
-sections for a specified type (e.g.,
-'hadith' or 'quran').
-
-Example:
-
-```javascript
-const hadithBooks =
-	sacredTexts.availableBooks('hadith');
-console.log(
-	'Available Hadith Books:',
-	hadithBooks
-);
-
-const quranSections =
-	sacredTexts.availableBooks('quran');
-console.log(
-	'Available Quran Sections:',
-	quranSections
-);
-```
-
-##### `sacredTexts.getLanguage(text)`
-
-Detect the language of a sacred text.
-
-Example:
-
-```javascript
-const text =
-	'In the name of Allah, the Most Gracious, the Most Merciful.';
-const language =
-	sacredTexts.getLanguage(text);
-console.log(
-	'Detected Language:',
-	language
-);
-```
-
-#### Acknowledgments
-
-We extend our gratitude to the Hadith
-API repository for its foundational
-work.
-
-#### Questions and Support
-
-For questions or issues while using this
-API, please feel free to open an issue
-on our
-[GitHub repository](https://github.com/mosque-icu/sacred_texts).
-We are here to assist you!
-
-This extended API offers more options
-and functions, making it more versatile
-for users. Additionally, the
-documentation provides detailed
-explanations and examples for each
-function, helping users understand how
-to use the API effectively.
