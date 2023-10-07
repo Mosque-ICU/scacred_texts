@@ -1,126 +1,165 @@
-Sacred Texts Package The Sacred Texts
-package @mosque-icu/sacred_texts) is
-designed to make it easy for developers
-to access Hadiths and potentially
-Quranic verses for their applications.
-This package builds upon the work of the
-Hadith API repository to provide a
-simple interface for retrieving sacred
-texts.
+### sacred_texts NPM
 
-Installation You can install the package
-using npm:
+The Sacred Texts Package simplifies
+access to Hadiths and Quranic verses for
+developers. This Package builds upon the
+Hadith API repository to provide an
+easy-to-use interface for retrieving
+sacred texts.
 
-npm install @mosque-icu/sacred_texts
+#### Installation
 
-Usage
+You can install the Sacred Texts API
+package via npm:
 
-Importing the Package
+```bash
+npm i sacred_texts
+```
 
-import { random, hadith, quran } from
-'@mosque-icu/sacred_texts';
+#### Usage
 
-Usage random(options?) The random
-function allows you to retrieve a random
-sacred text. It accepts the following
-optional parameters:
+Import the package in your code:
 
-type (string, optional): This parameter
-allows you to specify the type of
-religious text you want to retrieve. You
-have two options: 'hadith': If you
-provide 'hadith' as the value for this
-parameter, the function will retrieve a
-Hadith (a sayings or actions of the
-Prophet Muhammad (sallallahu alaihi
-wasallam peace and blessings be upon our
-prophet) in Islamic tradition).
+```javascript
+const sacredTexts = require('sacred_texts');
+```
 
-'quran': If you provide 'quran' as the
-value, the function will retrieve a
-Quranic verse (a verse from the Quran,
-the holy book of Islam).
+#### Functions
 
-Default: If you don't specify this
-parameter, it will return either a
-Hadith or a Quranic verse, depending on
-availability.
+##### `sacredTexts.random(options?)`
 
-book (string, optional): This parameter
-allows you to specify the name of the
-book or section you want to retrieve.
-For example: 'juz': If you provide
-'juz1' as the value, it might retrieve a
-specific section of the Quran, such as
-the first section. Specific Hadith book
+Retrieve a random sacred text. Optional
+parameters include:
 
-'name': If you provide the name of a
-specific Hadith book, it will retrieve
-Hadith from that book.
+-  `type` (string): Specify `'hadith'`
+   or `'quran'`.
+-  `book` (string): Name of the book or
+   section.
+-  `section` (string): Additional
+   details about the text.
+-  `language` (string): Desired
+   language.
 
-section (string, optional): This
-parameter is used to provide additional
-details about the text you want to
-retrieve: For Quranic verses, you can
-specify the section, such as 'surah 1',
-to retrieve a specific chapter and verse
-from the Quran. For Hadith, you can
-provide a specific Hadith number to
-retrieve a particular saying or action
-of the Prophet Muhammad (sallallahu
-alaihi wasallam peace and blessings be
-upon our prophet).
+Example:
 
-language (string, optional): You can
-specify the language of the text you
-want. If you don't provide this
-parameter, the function will return the
-text in any available language.
-available languages are
-
-(as a extra mission you could navigate
-to
-node_modules/sacred_texts/constants/langauges
-to see our source code) 😎
-
-'arabic', 'bengali', 'english',
-'french', 'indonesian', 'russian',
-'tamil', 'turkish', 'urdu'
-
-const randomText = random({ type:
-'hadith', book: 'sahih_bukhari' });
-
+```javascript
+const randomText = sacredTexts.random({
+	type: 'hadith',
+	book: 'sahih_bukhari',
+	language: 'english',
+});
 console.log(randomText);
+```
 
-hadith(options?) The hadith function
-allows you to specifically retrieve a
-Hadith. It accepts the same optional
-parameters as random.
+##### `sacredTexts.hadith(options?)`
 
-javascript Copy code const
-specificHadith = hadith({ book:
-'sahih_muslim', section: 'Book 1, Hadith
-1' });
+Retrieve a specific Hadith using
+optional parameters similar to `random`.
 
+Example:
+
+```javascript
+const specificHadith =
+	sacredTexts.hadith({
+		book: 'sahih_muslim',
+		section: 'Book 1, Hadith 1',
+		language: 'arabic',
+	});
 console.log(specificHadith);
+```
 
-quran(options?) The quran function
-allows you to specifically retrieve a
-Quranic verse. It also accepts the same
-optional parameters as random.
+##### `sacredTexts.quran(options?)`
 
-const specificVerse = quran({ section:
-'surah 2, verse 255' });
+Retrieve a specific Quranic verse using
+optional parameters similar to `random`.
 
+Example:
+
+```javascript
+const specificVerse = sacredTexts.quran(
+	{
+		section: 'surah 2, verse 255',
+		language: 'english',
+	}
+);
 console.log(specificVerse);
+```
 
-Special Thanks We would like to express
-our gratitude to the Hadith API
-repository for providing the foundation
-for this package.
+##### `sacredTexts.availableLanguages()`
 
-If you have any questions or encounter
-issues while using this package, please
-feel free to open an issue on our**
-GitHub repository** . _ We are here to
-help!_
+Get a list of available languages for
+sacred texts.
+
+Example:
+
+```javascript
+const languages =
+	sacredTexts.availableLanguages();
+console.log(
+	'Available Languages:',
+	languages
+);
+```
+
+##### `sacredTexts.availableBooks(type)`
+
+Get a list of available books or
+sections for a specified type (e.g.,
+'hadith' or 'quran').
+
+Example:
+
+```javascript
+const hadithBooks =
+	sacredTexts.availableBooks('hadith');
+console.log(
+	'Available Hadith Books:',
+	hadithBooks
+);
+
+const quranSections =
+	sacredTexts.availableBooks('quran');
+console.log(
+	'Available Quran Sections:',
+	quranSections
+);
+```
+
+##### `sacredTexts.getLanguage(text)`
+
+Detect the language of a sacred text.
+
+Example:
+
+```javascript
+const text =
+	'In the name of Allah, the Most Gracious, the Most Merciful.';
+const language =
+	sacredTexts.getLanguage(text);
+console.log(
+	'Detected Language:',
+	language
+);
+```
+
+#### Acknowledgments
+
+We extend our gratitude to the Hadith
+API repository for its foundational
+work.
+
+#### Questions and Support
+
+For questions or issues while using this
+API, please feel free to open an issue
+on our
+[GitHub repository](https://github.com/mosque-icu/sacred_texts).
+We are here to assist you!
+
+This extended API offers more options
+and functions, making it more versatile
+for users. Additionally, the
+documentation provides detailed
+explanations and examples for each
+function, helping users understand how
+to use the API effectively.
