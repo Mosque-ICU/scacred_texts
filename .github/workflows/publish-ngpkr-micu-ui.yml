@@ -17,7 +17,6 @@ jobs:
          - name:
               Change to package
               directory
-           working-directory: shared/micu-ui
            run: |
 
               npm ci
@@ -38,7 +37,6 @@ jobs:
          - name:
               Change to package
               directory
-           working-directory: shared/micu-ui
            run: |
 
               npm ci

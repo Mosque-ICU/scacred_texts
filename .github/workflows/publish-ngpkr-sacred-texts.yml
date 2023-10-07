@@ -62,7 +62,6 @@ jobs:
           node-version: 20
 
       - name: Change to package directory
-        working-directory: packages/sacred_texts
         run: |
           npm ci
           npm test

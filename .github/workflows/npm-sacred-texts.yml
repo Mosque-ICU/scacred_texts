@@ -21,7 +21,6 @@ jobs:
          - name:
               Check Node.js and npm
               versions
-           working-directory: shared/micu-ui
            run: |
               node -v
               npm -v
